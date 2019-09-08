@@ -20,7 +20,7 @@ open class BaseTax(val taxPercentage: Double) {
 
         val difference = number % 0.05
 
-        val amountToAdd = if (difference != 0.0) {
+        val amountToAdd = if (roundDownDecimal(difference) != 0.0) {
             0.05 - difference
         } else {
             0.0
