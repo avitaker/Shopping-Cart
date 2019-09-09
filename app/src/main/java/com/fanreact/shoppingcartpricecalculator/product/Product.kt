@@ -2,10 +2,10 @@ package com.fanreact.shoppingcartpricecalculator.product
 
 import com.fanreact.shoppingcartpricecalculator.tax.ImportTax
 import com.fanreact.shoppingcartpricecalculator.tax.SalesTax
+import com.fanreact.shoppingcartpricecalculator.utilities.BaseDatum
 import java.util.*
 
-class Product(var name: String, var baseCost: Double, val productCategory: ProductCategory, val isImported: Boolean) {
-    val id = UUID.randomUUID().toString()
+class Product(var name: String, var baseCost: Double, val productCategory: ProductCategory, val isImported: Boolean) : BaseDatum() {
 
     private val salesTax = SalesTax(productCategory)
     private val importTax = ImportTax()
