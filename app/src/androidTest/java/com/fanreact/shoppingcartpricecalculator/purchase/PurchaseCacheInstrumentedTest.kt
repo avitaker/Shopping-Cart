@@ -12,7 +12,7 @@ class PurchaseCacheInstrumentedTest {
     fun cacheWalkthrough() {
         PurchaseCache.clear()
 
-        val product1 = Product("test", 10.0, ProductCategory.Coffee, true)
+        val product1 = ProductCounter(Product("test", 10.0, ProductCategory.Coffee, true), 1)
 
         val purchase1 = Purchase(listOf(product1))
 
@@ -23,10 +23,10 @@ class PurchaseCacheInstrumentedTest {
 
         assert(cachedPurchase.id == purchase1.id) { "Inserted purchase does not have same ID" }
 
-        assert(cachedPurchase.products()[0].id == product1.id) { "Inserted purchase does not have the same product" }
+        assert(cachedPurchase.products()[0].product.id == product1.product.id) { "Inserted purchase does not have the same product" }
 
 
-        val product2 = Product("test", 10.0, ProductCategory.Vehicle, true)
+        val product2 = ProductCounter(Product("test", 10.0, ProductCategory.Vehicle, true), 1)
         val purchase2 = Purchase(listOf(product1, product2))
 
         PurchaseCache.put(purchase2)

@@ -84,7 +84,7 @@ class DialogAddProductToCart : BottomSheetDialogFragment() {
         super.onStart()
         addProductToCartViewModel.finalProductCounterLiveData.observe(this, Observer {
             if (it != null) {
-                mainViewModel?.addProduct(it.product)
+                mainViewModel?.addProduct(it)
                 dismiss()
             }
         })

@@ -4,8 +4,8 @@ import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.utilities.BaseDatum
 import java.util.*
 
-class Purchase(initialListOfProducts: List<Product> = listOf()) : BaseDatum() {
-    private val listOfProducts = mutableListOf<Product>().apply {
+class Purchase(initialListOfProducts: List<ProductCounter> = listOf()) : BaseDatum() {
+    private val listOfProducts = mutableListOf<ProductCounter>().apply {
         addAll(initialListOfProducts)
     }
 
@@ -14,27 +14,25 @@ class Purchase(initialListOfProducts: List<Product> = listOf()) : BaseDatum() {
     var totalSalesTax = 0.0
     var totalPriceWithTax = 0.0
 
-    fun addProduct(product: Product, updateTotals: Boolean = true) {
-        var alreadyExists = false
-        listOfProducts.firstOrNull { it.id == product.id || it.equals(product) }?.let {
-            alreadyExists = true
+    fun addProduct(product: ProductCounter, updateTotals: Boolean = true) {
+        listOfProducts.firstOrNull { it.product.id == product.product.id || it.product.equals(product.product) }?.let {
+            listOfProducts[listOfProducts.indexOf(it)].quantiy = product.quantiy + it.quantiy
+        } ?: run {
+            listOfProducts.add(product)
         }
 
-        if (!alreadyExists) {
-            listOfProducts.add(product)
-            if (updateTotals) {
-                calculateReceiptTotals()
-            }
+        if (updateTotals) {
+            calculateReceiptTotals()
         }
     }
 
-    fun addProducts(products: List<Product>) {
+    fun addProducts(products: List<ProductCounter>) {
         products.forEach { addProduct(it, false) }
         calculateReceiptTotals()
     }
 
-    fun removeProduct(product: Product) {
-        listOfProducts.firstOrNull { it.id == product.id }?.let {
+    fun removeProduct(product: ProductCounter) {
+        listOfProducts.firstOrNull { it.product.id == product.product.id }?.let {
             listOfProducts.remove(it)
         }
         calculateReceiptTotals()
@@ -53,7 +51,7 @@ class Purchase(initialListOfProducts: List<Product> = listOf()) : BaseDatum() {
     private fun totalSalesTax() : Double {
         totalSalesTax = 0.0
         listOfProducts.forEach { product ->
-            totalSalesTax += product.totalTax()
+            totalSalesTax += product.product.totalTax() * product.quantiy
         }
 
         return totalSalesTax
@@ -62,7 +60,7 @@ class Purchase(initialListOfProducts: List<Product> = listOf()) : BaseDatum() {
     private fun totalPriceWithTax() : Double {
         totalPriceWithTax = 0.0
         listOfProducts.forEach { product ->
-            totalPriceWithTax += product.totalPriceWithTax()
+            totalPriceWithTax += product.product.totalPriceWithTax() * product.quantiy
         }
 
         return totalPriceWithTax

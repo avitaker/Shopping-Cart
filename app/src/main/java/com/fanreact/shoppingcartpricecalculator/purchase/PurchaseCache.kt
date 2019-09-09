@@ -8,7 +8,7 @@ object PurchaseCache : BaseCache<Purchase>() {
     override fun put(purchase: Purchase) {
         super.put(purchase)
         purchase.products().forEach {
-            ProductCache.put(it)
+            ProductCache.put(it.product)
         }
     }
 }

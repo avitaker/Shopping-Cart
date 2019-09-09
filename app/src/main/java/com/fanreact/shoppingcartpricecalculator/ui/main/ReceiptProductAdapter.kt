@@ -7,6 +7,6 @@ class ReceiptProductAdapter(context: Context): BaseProductAdapter(context) {
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         super.onBindViewHolder(holder, position)
 
-        holder.tvCost.text = DataConversionUtils.priceDisplayString(products[position].totalPriceWithTax())
+        holder.tvCost.text = DataConversionUtils.priceDisplayString(products[position].product.totalPriceWithTax())
     }
 }

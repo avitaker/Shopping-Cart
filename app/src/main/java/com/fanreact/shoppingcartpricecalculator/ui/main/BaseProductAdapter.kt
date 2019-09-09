@@ -7,11 +7,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.product.Product
+import com.fanreact.shoppingcartpricecalculator.purchase.ProductCounter
 import com.fanreact.shoppingcartpricecalculator.utilities.DataConversionUtils
 import kotlinx.android.synthetic.main.item_product.view.*
 
 open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapter<BaseProductAdapter.ProductViewHolder>(){
-    protected val products = mutableListOf<Product>()
+    protected val products = mutableListOf<ProductCounter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
@@ -25,9 +26,9 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
         val product = products[position]
 
         holder.apply {
-            tvName.text = product.name
-            tvCost.text = DataConversionUtils.priceDisplayString(product.baseCost)
-            tvCount.text = context.getString(R.string.format_quantity, 1)
+            tvName.text = product.product.name
+            tvCost.text = DataConversionUtils.priceDisplayString(product.product.baseCost)
+            tvCount.text = context.getString(R.string.format_quantity, product.quantiy)
         }
     }
 
@@ -35,7 +36,7 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
         return position.toLong()
     }
 
-    fun setProducts(products: List<Product>) {
+    fun setProducts(products: List<ProductCounter>) {
         this.products.apply {
             clear()
             addAll(products)
@@ -43,7 +44,7 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
         }
     }
 
-    fun addProduct(product: Product, position: Int = products.count()) {
+    fun addProduct(product: ProductCounter, position: Int = products.count()) {
         val translatedPosition = if (position !in 0 until products.count()) {
             products.count()
         } else {
@@ -56,7 +57,7 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
     }
 
     fun removeProduct(id: String) {
-        products.firstOrNull { p -> p.id == id }?.let {
+        products.firstOrNull { p -> p.product.id == id }?.let {
             val index = products.indexOf(it)
             products.removeAt(index)
             notifyItemRemoved(index)

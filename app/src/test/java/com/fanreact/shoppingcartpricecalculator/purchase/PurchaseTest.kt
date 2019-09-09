@@ -10,44 +10,44 @@ class PurchaseTest {
     fun addProduct() {
         val purchase = Purchase()
 
-        val product = Product("test", 10.0, ProductCategory.AlcoholicBeverage, false)
+        val product = ProductCounter(Product("test", 10.0, ProductCategory.AlcoholicBeverage, false), 1)
 
         purchase.addProduct(product)
         assert(purchase.products().count() == 1) {"Product not added"}
-        assert(purchase.products()[0].id == product.id) {"Added product ID does not match"}
+        assert(purchase.products()[0].product.id == product.product.id) {"Added product ID does not match"}
     }
 
     @Test
     fun addProducts() {
         val purchase = Purchase()
 
-        val product1 = Product("test", 10.0, ProductCategory.AlcoholicBeverage, false)
-        val product2 = Product("test1", 200.0, ProductCategory.ConsumerElectronics, true)
+        val product1 = ProductCounter(Product("test", 10.0, ProductCategory.AlcoholicBeverage, false), 1)
+        val product2 = ProductCounter(Product("test1", 200.0, ProductCategory.ConsumerElectronics, true), 1)
 
         purchase.addProducts(listOf(product1, product2))
         assert(purchase.products().count() == 2) {"Products not added"}
-        assert(purchase.products()[0].id == product1.id && purchase.products()[1].id == product2.id) {"Added product IDs do not match"}
+        assert(purchase.products()[0].product.id == product1.product.id && purchase.products()[1].product.id == product2.product.id) {"Added product IDs do not match"}
     }
 
     @Test
     fun removeProduct() {
         val purchase = Purchase()
 
-        val product1 = Product("test", 10.0, ProductCategory.AlcoholicBeverage, false)
-        val product2 = Product("test1", 200.0, ProductCategory.ConsumerElectronics, true)
+        val product1 = ProductCounter(Product("test", 10.0, ProductCategory.AlcoholicBeverage, false), 1)
+        val product2 = ProductCounter(Product("test1", 200.0, ProductCategory.ConsumerElectronics, true), 1)
 
         purchase.addProducts(listOf(product1, product2))
 
         purchase.removeProduct(product1)
         assert(purchase.products().count() == 1) {"Product not removed correctly"}
-        assert(purchase.products()[0].id == product2.id) {"Wrong product was removed"}
+        assert(purchase.products()[0].product.id == product2.product.id) {"Wrong product was removed"}
     }
 
     @Test
     fun clearProducts() {
         val purchase = Purchase()
 
-        purchase.addProducts(listOf(Product("test", 10.0, ProductCategory.AlcoholicBeverage, false)))
+        purchase.addProducts(listOf(ProductCounter(Product("test", 10.0, ProductCategory.AlcoholicBeverage, false), 1)))
 
         purchase.clearProducts()
         assert(purchase.products().count() == 0) {"Products were not cleared"}
@@ -58,8 +58,8 @@ class PurchaseTest {
         val purchase = Purchase()
 
         val products = listOf(
-            Product("imported coffee", 11.0, ProductCategory.Coffee, true),
-            Product("imported scooter", 15001.25, ProductCategory.Vehicle, true)
+            ProductCounter(Product("imported coffee", 11.0, ProductCategory.Coffee, true), 1),
+            ProductCounter(Product("imported scooter", 15001.25, ProductCategory.Vehicle, true), 1)
         )
         purchase.addProducts(products)
 
@@ -71,8 +71,8 @@ class PurchaseTest {
         val purchase = Purchase()
 
         val products = listOf(
-            Product("imported coffee", 11.0, ProductCategory.Coffee, true),
-            Product("imported scooter", 15001.25, ProductCategory.Vehicle, true)
+            ProductCounter(Product("imported coffee", 11.0, ProductCategory.Coffee, true), 1),
+            ProductCounter(Product("imported scooter", 15001.25, ProductCategory.Vehicle, true), 1)
         )
         purchase.addProducts(products)
 
