@@ -3,4 +3,17 @@
 
     <string name="add_product">Add Product</string>
     <string name="add_product_extended">Create a product to add on the cart, or pick from one of the previously purchased products</string>
+
+    <string name="product_name">Product Name</string>
+    <string name="cost">Cost</string>
+    <string name="category">Category</string>
+    <string name="imported">Imported</string>
+
+    <string name="none">None</string>
+    <string name="vehicle">Vehicle</string>
+    <string name="alcoholic_beverage">Alcoholic Beverage</string>
+    <string name="consumer_electronics">Consumer Electronics</string>
+    <string name="coffee">Coffee</string>
+    <string name="candy">Candy</string>
+    <string name="popcorn">Popcorn</string>
 </resources>

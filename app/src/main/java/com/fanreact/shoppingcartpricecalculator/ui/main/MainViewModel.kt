@@ -35,6 +35,10 @@ class MainViewModel : ViewModel() {
         }
     }
 
+    fun seedPurchase(purchase: Purchase) {
+        this.purchase = purchase
+    }
+
     fun addProducts(listOfProducts: List<Product>) {
         purchase = purchase.apply {
             addProducts(listOfProducts)
