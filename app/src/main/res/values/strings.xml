@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">ShoppingCartPriceCalculator</string>
+
+    <string name="add_product">Add Product</string>
+    <string name="add_product_extended">Create a product to add on the cart, or pick from one of the previously purchased products</string>
 </resources>
