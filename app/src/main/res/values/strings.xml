@@ -15,6 +15,9 @@
 
     <string name="format_quantity">x %1$d</string>
 
+    <string name="sales_tax">Sales Tax</string>
+    <string name="total">Total</string>
+
     <string name="none">None</string>
     <string name="vehicle">Vehicle</string>
     <string name="alcoholic_beverage">Alcoholic Beverage</string>

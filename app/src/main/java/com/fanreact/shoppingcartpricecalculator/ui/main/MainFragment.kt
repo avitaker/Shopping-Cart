@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseSeeder
 import com.fanreact.shoppingcartpricecalculator.ui.createProduct.DialogCreateProduct
+import kotlinx.android.synthetic.main.dialog_create_product.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
@@ -21,7 +22,7 @@ class MainFragment : Fragment() {
 
     private var viewModel: MainViewModel? = null
 
-    private var shoppingCartProductAdapter: ShoppingCartProductAdapter? = null
+    private var baseProductAdapter: BaseProductAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +38,10 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
 
         activity?.let {
-            shoppingCartProductAdapter = ShoppingCartProductAdapter(it)
+            baseProductAdapter = BaseProductAdapter(it)
             view.rvProductsInCart.apply {
                 layoutManager = LinearLayoutManager(context)
-                adapter = shoppingCartProductAdapter
+                adapter = baseProductAdapter
             }
         }
 
@@ -58,6 +59,10 @@ class MainFragment : Fragment() {
             }
         }
 
+        view.btCompletePurchase.setOnClickListener {
+            viewModel?.completePurchase()
+        }
+
         return view
     }
 
@@ -66,10 +71,16 @@ class MainFragment : Fragment() {
         viewModel?.apply {
             productsLiveData.observe(this@MainFragment, Observer { products ->
                 products?.let {
-                    shoppingCartProductAdapter?.setProducts(products)
+                    baseProductAdapter?.setProducts(products)
                 }
             })
-            seedPurchase(PurchaseSeeder.Purchase2)
+            completedPurchaseLiveData.observe(this@MainFragment, Observer {
+                if (it != null) {
+                    this@MainFragment.fragmentManager?.let {
+                        DialogViewReceipt().show(it, "ViewReceipt")
+                    }
+                }
+            })
         }
     }
 }

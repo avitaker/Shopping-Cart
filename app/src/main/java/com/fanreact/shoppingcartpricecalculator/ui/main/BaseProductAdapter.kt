@@ -10,8 +10,8 @@ import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.utilities.DataConversionUtils
 import kotlinx.android.synthetic.main.item_product.view.*
 
-class ShoppingCartProductAdapter(private val context: Context) : RecyclerView.Adapter<ShoppingCartProductAdapter.ProductViewHolder>(){
-    private val products = mutableListOf<Product>()
+open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapter<BaseProductAdapter.ProductViewHolder>(){
+    protected val products = mutableListOf<Product>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         return ProductViewHolder(LayoutInflater.from(context).inflate(R.layout.item_product, parent, false))
