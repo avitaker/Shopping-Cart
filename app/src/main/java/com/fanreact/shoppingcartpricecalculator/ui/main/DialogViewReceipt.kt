@@ -11,11 +11,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.utilities.DataConversionUtils
+import com.fanreact.shoppingcartpricecalculator.utilities.IRecyclerViewItemInteractionListener
 import com.fanreact.shoppingcartpricecalculator.utilities.getThemifiedInflater
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_view_receipt.view.*
 
-class DialogViewReceipt : DialogFragment() {
+class DialogViewReceipt : BottomSheetDialogFragment() {
     private var mainViewModel: MainViewModel? = null
 
     private var receiptProductAdapter: ReceiptProductAdapter? = null
@@ -44,7 +45,10 @@ class DialogViewReceipt : DialogFragment() {
 
         view.rvProductsInReceipt.apply {
             layoutManager = LinearLayoutManager(context)
-            receiptProductAdapter = ReceiptProductAdapter(context)
+            receiptProductAdapter = ReceiptProductAdapter(context, object: IRecyclerViewItemInteractionListener {
+                override fun onItemClicked(item: Any) {
+                }
+            })
             adapter = receiptProductAdapter
         }
 

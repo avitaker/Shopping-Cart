@@ -17,7 +17,8 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintVertical_bias="0"
-        tools:text="16lb bag of Skittles" />
+        tools:text="16lb bag of Skittles"
+        style="@style/AppTheme.Text.Title"/>
 
     <TextView
         android:id="@+id/tvCost"
@@ -25,7 +26,8 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="15001.25" />
+        tools:text="15001.25"
+        style="@style/AppTheme.Text" />
 
     <TextView
         android:id="@+id/tvCount"
@@ -35,5 +37,6 @@
         app:layout_constraintEnd_toEndOf="@+id/tvCost"
         app:layout_constraintTop_toBottomOf="@+id/tvCost"
         android:layout_marginTop="8dp"
-        tools:text="x 2"/>
+        tools:text="x 2"
+        style="@style/AppTheme.Text.Italic"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

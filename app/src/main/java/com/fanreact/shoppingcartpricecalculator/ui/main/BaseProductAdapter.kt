@@ -6,12 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.fanreact.shoppingcartpricecalculator.R
-import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.purchase.ProductCounter
 import com.fanreact.shoppingcartpricecalculator.utilities.DataConversionUtils
+import com.fanreact.shoppingcartpricecalculator.utilities.IRecyclerViewItemInteractionListener
 import kotlinx.android.synthetic.main.item_product.view.*
 
-open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapter<BaseProductAdapter.ProductViewHolder>(){
+open class BaseProductAdapter(private val context: Context, private val recyclerViewItemInteractionListener: IRecyclerViewItemInteractionListener) : RecyclerView.Adapter<BaseProductAdapter.ProductViewHolder>(){
     protected val products = mutableListOf<ProductCounter>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
@@ -29,6 +29,7 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
             tvName.text = product.product.name
             tvCost.text = DataConversionUtils.priceDisplayString(product.product.baseCost)
             tvCount.text = context.getString(R.string.format_quantity, product.quantiy)
+            itemView.setOnClickListener { recyclerViewItemInteractionListener.onItemClicked(product) }
         }
     }
 
@@ -56,8 +57,8 @@ open class BaseProductAdapter(private val context: Context) : RecyclerView.Adapt
         }
     }
 
-    fun removeProduct(id: String) {
-        products.firstOrNull { p -> p.product.id == id }?.let {
+    fun removeProduct(productId: String) {
+        products.firstOrNull { p -> p.product.id == productId }?.let {
             val index = products.indexOf(it)
             products.removeAt(index)
             notifyItemRemoved(index)

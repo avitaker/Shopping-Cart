@@ -9,10 +9,9 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fanreact.shoppingcartpricecalculator.R
-import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseSeeder
-import com.fanreact.shoppingcartpricecalculator.ui.createProduct.DialogCreateProduct
+import com.fanreact.shoppingcartpricecalculator.purchase.ProductCounter
 import com.fanreact.shoppingcartpricecalculator.ui.loadPurchase.DialogLoadPurchase
-import kotlinx.android.synthetic.main.dialog_create_product.view.*
+import com.fanreact.shoppingcartpricecalculator.utilities.IRecyclerViewItemInteractionListener
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
@@ -39,7 +38,13 @@ class MainFragment : Fragment() {
         val view = inflater.inflate(R.layout.main_fragment, container, false)
 
         activity?.let {
-            baseProductAdapter = BaseProductAdapter(it)
+            baseProductAdapter = BaseProductAdapter(it, object : IRecyclerViewItemInteractionListener {
+                override fun onItemClicked(item: Any) {
+                    (item as? ProductCounter)?.let {
+                        viewModel?.removeProduct(it)
+                    }
+                }
+            })
             view.rvProductsInCart.apply {
                 layoutManager = LinearLayoutManager(context)
                 adapter = baseProductAdapter
@@ -51,6 +56,10 @@ class MainFragment : Fragment() {
                 DialogLoadPurchase()
                     .show(it, "LoadPurchase")
             }
+        }
+
+        view.btClearPurchase.setOnClickListener {
+            viewModel?.clearPurchase()
         }
 
         view.btAddToCart.setOnClickListener {

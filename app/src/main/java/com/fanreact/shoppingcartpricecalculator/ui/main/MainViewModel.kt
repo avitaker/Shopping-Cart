@@ -59,17 +59,21 @@ class MainViewModel : ViewModel() {
         purchase = purchase.apply {
             removeProduct(product)
         }
-    }
 
-    fun clearProducts() {
-        purchase = purchase.apply {
-            clearProducts()
+        if (purchase.products().count() == 0) {
+            purchase = Purchase()
         }
     }
 
+    fun clearPurchase() {
+        purchase = Purchase()
+    }
+
     fun completePurchase() {
-        purchase.completePurchase()
-        completedPurchaseMutableLiveData.postValue(purchase)
-        PurchaseCache.put(purchase)
+        if (purchase.products().count() > 0) {
+            purchase.completePurchase()
+            completedPurchaseMutableLiveData.postValue(purchase)
+            PurchaseCache.put(purchase)
+        }
     }
 }

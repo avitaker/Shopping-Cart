@@ -9,6 +9,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/tvPurchaseSummary"
         android:ellipsize="end"
-        android:maxLines="2"/>
+        android:maxLines="2"
+        style="@style/AppTheme.Text.Title"/>
 
 </LinearLayout>

@@ -24,12 +24,28 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <com.google.android.material.button.MaterialButton
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/btLoadPurchase"
-                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                android:text="@string/load_purchase"/>
+                android:orientation="horizontal">
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btLoadPurchase"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/load_purchase"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:id="@+id/btClearPurchase"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:text="@string/empty_cart"/>
+
+            </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
                 android:layout_width="match_parent"
