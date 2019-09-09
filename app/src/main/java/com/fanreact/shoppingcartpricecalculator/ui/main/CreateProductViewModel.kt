@@ -5,11 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.product.ProductCategory
-import java.lang.Exception
 
 class CreateProductViewModel : ViewModel() {
-    private val productAddedMutableLiveData = MutableLiveData<Product?>()
-    val addedProductLiveData: LiveData<Product?> get() = productAddedMutableLiveData
+    private val createdProductMutableLiveData = MutableLiveData<Product?>()
+    val createdProductLiveData: LiveData<Product?> get() = createdProductMutableLiveData
 
     private var cost: Double = -1.0
     private var productName: String = ""
@@ -35,9 +34,9 @@ class CreateProductViewModel : ViewModel() {
     fun submitProduct() {
         if (!productName.isEmpty() && category != null && cost > 0) {
             val product = Product(productName, cost, category!!, isImported)
-            productAddedMutableLiveData.postValue(product)
+            createdProductMutableLiveData.postValue(product)
         } else {
-            productAddedMutableLiveData.postValue(null)
+            createdProductMutableLiveData.postValue(null)
         }
     }
 }

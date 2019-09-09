@@ -108,7 +108,7 @@ class DialogCreateProduct : BottomSheetDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        createProductViewModel.addedProductLiveData.observe(this, Observer {
+        createProductViewModel.createdProductLiveData.observe(this, Observer {
             it?.let {
                 ProductCache.put(it)
                 activity?.let {
