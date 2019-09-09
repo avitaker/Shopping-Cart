@@ -24,4 +24,6 @@ open class BaseCache<T: BaseDatum>(cacheSize: Int = 8 * 1024 * 1024) {
     }
 
     fun values() = cache.snapshot().values.toList()
+
+    fun clear() = cache.evictAll()
 }
