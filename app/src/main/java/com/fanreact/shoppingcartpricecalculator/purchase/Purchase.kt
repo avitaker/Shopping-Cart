@@ -54,6 +54,8 @@ class Purchase(initialListOfProducts: List<ProductCounter> = listOf()) : BaseDat
         calculateReceiptTotals()
     }
 
+    fun isComplete() = purchaseCompletedDate != null
+
     private fun calculateReceiptTotals() {
         totalSalesTax()
         totalPriceWithTax()

@@ -18,26 +18,33 @@
             android:id="@+id/rvProductsInCart"
             android:layout_weight="1"/>
 
-        <com.google.android.material.button.MaterialButton
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btAddToCart"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="@string/add_to_cart"/>
+            android:orientation="vertical"
+            android:padding="16dp">
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btLoadPurchase"
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="@string/load_purchase"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btLoadPurchase"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/load_purchase"/>
 
-        <com.google.android.material.button.MaterialButton
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/btCompletePurchase"
-            style="@style/Widget.MaterialComponents.Button"
-            android:text="@string/complete_purchase"/>
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btAddToCart"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                android:text="@string/add_to_cart"/>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/btCompletePurchase"
+                style="@style/Widget.MaterialComponents.Button"
+                android:text="@string/complete_purchase"/>
+        </LinearLayout>
 
     </LinearLayout>
 </FrameLayout>
