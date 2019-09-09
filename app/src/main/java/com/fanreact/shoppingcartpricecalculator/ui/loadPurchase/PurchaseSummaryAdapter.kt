@@ -35,7 +35,11 @@ class PurchaseSummaryAdapter(private val context: Context, private val recyclerV
             summaryString += it.product.name + ", "
         }
 
-        return summaryString.substring(0, summaryString.count() - 2)
+        try {
+            return summaryString.substring(0, summaryString.count() - 2)
+        } catch (e: Exception) {
+            return ""
+        }
     }
 
     fun setPurchases(purchases: List<Purchase>) {
