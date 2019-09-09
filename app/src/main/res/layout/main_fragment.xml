@@ -13,21 +13,33 @@
         android:id="@+id/llContent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_width="match_parent"
-            android:id="@+id/rvProductsInCart"/>
+            android:id="@+id/rvProductsInCart"
+            android:layout_weight="1"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btAddToCart"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="@string/add_to_cart"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btCreateProduct"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:text="@string/add_product"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btCompletePurchase"
+            style="@style/Widget.MaterialComponents.Button"
+            android:text="@string/complete_purchase"/>
 
     </LinearLayout>
-
-    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-        android:id="@+id/fabAddProduct"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/add_product_extended"
-        android:text="@string/add_product"
-        app:layout_anchor="@id/llContent"
-        android:layout_gravity="bottom|end"
-        app:icon="@drawable/ic_add_shopping_cart_black_24dp"/>
 </FrameLayout>
 
 

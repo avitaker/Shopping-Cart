@@ -21,4 +21,6 @@ object PurchaseSeeder {
         Product("Bottle Of Wine", 10.00, ProductCategory.AlcoholicBeverage, true),
         Product("300# bag of Fair-Trade Coffee", 997.99, ProductCategory.Coffee, false)
     ))
+
+    val Purchases = listOf(Purchase1, Purchase2, Purchase3)
 }

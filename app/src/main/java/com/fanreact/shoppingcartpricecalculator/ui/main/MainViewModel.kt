@@ -7,6 +7,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.purchase.Purchase
+import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseCache
 import com.fanreact.shoppingcartpricecalculator.utilities.DataConversionUtils
 
 class MainViewModel : ViewModel() {
@@ -17,7 +18,9 @@ class MainViewModel : ViewModel() {
     }
 
     private val purchaseMutableLiveData = MutableLiveData<Purchase>()
-    val purchaseLiveData: LiveData<Purchase> get() = purchaseMutableLiveData
+
+    private val completedPurchaseMutableLiveData = MutableLiveData<Purchase>()
+    val completedPurchaseLiveData: LiveData<Purchase> get() = completedPurchaseMutableLiveData
 
     val productsLiveData = MediatorLiveData<List<Product>>()
     val salesTaxLiveData = MediatorLiveData<String>()
@@ -61,5 +64,10 @@ class MainViewModel : ViewModel() {
         purchase = purchase.apply {
             clearProducts()
         }
+    }
+
+    fun completePurchase() {
+        completedPurchaseMutableLiveData.postValue(purchase)
+        PurchaseCache.put(purchase)
     }
 }

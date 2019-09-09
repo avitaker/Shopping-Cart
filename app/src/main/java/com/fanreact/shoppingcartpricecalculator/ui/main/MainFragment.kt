@@ -10,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseSeeder
+import com.fanreact.shoppingcartpricecalculator.ui.createProduct.DialogCreateProduct
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
 class MainFragment : Fragment() {
@@ -43,9 +44,17 @@ class MainFragment : Fragment() {
             }
         }
 
-        view.fabAddProduct.setOnClickListener {
+        view.btAddToCart.setOnClickListener {
             this@MainFragment.fragmentManager?.let {
-                DialogCreateProduct().show(it, null)
+                DialogAddProductToCart()
+                    .show(it, "AddProduct")
+            }
+        }
+
+        view.btCreateProduct.setOnClickListener {
+            this@MainFragment.fragmentManager?.let {
+                DialogCreateProduct()
+                    .show(it, "CreateProduct")
             }
         }
 

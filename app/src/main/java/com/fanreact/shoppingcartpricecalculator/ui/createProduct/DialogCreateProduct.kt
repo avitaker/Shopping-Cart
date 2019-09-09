@@ -1,24 +1,21 @@
-package com.fanreact.shoppingcartpricecalculator.ui.main
+package com.fanreact.shoppingcartpricecalculator.ui.createProduct
 
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.ContextThemeWrapper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.annotation.StyleRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.product.ProductCache
-import com.fanreact.shoppingcartpricecalculator.product.ProductCategory
-import com.fanreact.shoppingcartpricecalculator.product.displayString
 import com.fanreact.shoppingcartpricecalculator.product.parseFromDisplayString
+import com.fanreact.shoppingcartpricecalculator.ui.main.MainViewModel
+import com.fanreact.shoppingcartpricecalculator.utilities.getThemifiedInflater
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_create_product.view.*
 
@@ -60,7 +57,7 @@ class DialogCreateProduct : BottomSheetDialogFragment() {
 
         val categoriesSpinner = view.categoriesSpinner
         categoriesSpinner.adapter = ArrayAdapter(categoriesSpinner.context,
-            android.R.layout.simple_spinner_dropdown_item, displayStringList(categoriesSpinner.context))
+            android.R.layout.simple_spinner_dropdown_item, createProductViewModel.displayProductCategories(categoriesSpinner.context))
         categoriesSpinner.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
 
@@ -117,20 +114,5 @@ class DialogCreateProduct : BottomSheetDialogFragment() {
                 dismiss()
             }
         })
-    }
-
-    fun getThemifiedInflater(inflater: LayoutInflater, @StyleRes themeResId: Int) : LayoutInflater {
-        val contextThemeWrapper = ContextThemeWrapper(activity, themeResId)
-
-        // clone the inflater using the ContextThemeWrapper
-        return inflater.cloneInContext(contextThemeWrapper)
-    }
-
-    fun displayStringList(context: Context) : List<String> {
-        val listOfString = mutableListOf<String>()
-        ProductCategory.values().forEach {
-            listOfString.add(it.displayString(context))
-        }
-        return listOfString
     }
 }
