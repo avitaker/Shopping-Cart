@@ -28,9 +28,9 @@
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btCreateProduct"
+            android:id="@+id/btLoadPurchase"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-            android:text="@string/add_product"/>
+            android:text="@string/load_purchase"/>
 
         <com.google.android.material.button.MaterialButton
             android:layout_width="match_parent"

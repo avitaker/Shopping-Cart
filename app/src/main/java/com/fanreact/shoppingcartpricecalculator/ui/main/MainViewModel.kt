@@ -40,7 +40,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun seedPurchase(purchase: Purchase) {
-        this.purchase = purchase
+        this.purchase = purchase.apply { unCompletePurchase() }
     }
 
     fun addProducts(listOfProducts: List<ProductCounter>) {
@@ -68,6 +68,7 @@ class MainViewModel : ViewModel() {
     }
 
     fun completePurchase() {
+        purchase.completePurchase()
         completedPurchaseMutableLiveData.postValue(purchase)
         PurchaseCache.put(purchase)
     }

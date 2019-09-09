@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +15,7 @@ import com.fanreact.shoppingcartpricecalculator.utilities.getThemifiedInflater
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_view_receipt.view.*
 
-class DialogViewReceipt : BottomSheetDialogFragment() {
+class DialogViewReceipt : DialogFragment() {
     private var mainViewModel: MainViewModel? = null
 
     private var receiptProductAdapter: ReceiptProductAdapter? = null

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.fanreact.shoppingcartpricecalculator.R
 import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseSeeder
 import com.fanreact.shoppingcartpricecalculator.ui.createProduct.DialogCreateProduct
+import com.fanreact.shoppingcartpricecalculator.ui.loadPurchase.DialogLoadPurchase
 import kotlinx.android.synthetic.main.dialog_create_product.view.*
 import kotlinx.android.synthetic.main.main_fragment.view.*
 
@@ -45,17 +46,17 @@ class MainFragment : Fragment() {
             }
         }
 
+        view.btLoadPurchase.setOnClickListener {
+            this@MainFragment.fragmentManager?.let {
+                DialogLoadPurchase()
+                    .show(it, "LoadPurchase")
+            }
+        }
+
         view.btAddToCart.setOnClickListener {
             this@MainFragment.fragmentManager?.let {
                 DialogAddProductToCart()
                     .show(it, "AddProduct")
-            }
-        }
-
-        view.btCreateProduct.setOnClickListener {
-            this@MainFragment.fragmentManager?.let {
-                DialogCreateProduct()
-                    .show(it, "CreateProduct")
             }
         }
 

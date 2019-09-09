@@ -8,6 +8,7 @@ class Purchase(initialListOfProducts: List<ProductCounter> = listOf()) : BaseDat
     private val listOfProducts = mutableListOf<ProductCounter>().apply {
         addAll(initialListOfProducts)
     }
+    private var purchaseCompletedDate: Date? = null
 
     fun products() = listOfProducts
 
@@ -40,6 +41,16 @@ class Purchase(initialListOfProducts: List<ProductCounter> = listOf()) : BaseDat
 
     fun clearProducts() {
         this.listOfProducts.clear()
+        calculateReceiptTotals()
+    }
+
+    fun completePurchase() {
+        purchaseCompletedDate = Date()
+        calculateReceiptTotals()
+    }
+
+    fun unCompletePurchase() {
+        purchaseCompletedDate = null
         calculateReceiptTotals()
     }
 
