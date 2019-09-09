@@ -1,11 +1,14 @@
 package com.fanreact.shoppingcartpricecalculator.purchase
 
 import com.fanreact.shoppingcartpricecalculator.product.Product
+import java.util.*
 
 class Purchase(initialListOfProducts: List<Product> = listOf()) {
     private val listOfProducts = mutableListOf<Product>().apply {
         addAll(initialListOfProducts)
     }
+
+    val id = UUID.randomUUID().toString()
 
     fun products() = listOfProducts
 

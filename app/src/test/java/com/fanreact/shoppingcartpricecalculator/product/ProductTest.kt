@@ -38,9 +38,15 @@ class ProductTest {
 
     @Test
     fun idUniqueness() {
-        assertNotEquals("ID duplicate", exemptAndUnimportedProduct.id, exemptAndImportedProduct.id)
-        assertNotEquals("ID duplicate", exemptAndImportedProduct.id, nonExemptAndUnimportedProduct.id)
-        assertNotEquals("ID duplicate", nonExemptAndUnimportedProduct.id, nonExemptAndImportedProduct.id)
-        assertNotEquals("ID duplicate", nonExemptAndImportedProduct.id, exemptAndUnimportedProduct.id)
+        val previousIds = mutableListOf<String>()
+        for (i in 0 until 1000) {
+            val product = Product("test1", 10.0, ProductCategory.Coffee, true)
+
+            assert(previousIds.firstOrNull { id -> id == product.id } == null) {
+                "ID match found on try $i"
+            }
+
+            previousIds.add(product.id)
+        }
     }
 }

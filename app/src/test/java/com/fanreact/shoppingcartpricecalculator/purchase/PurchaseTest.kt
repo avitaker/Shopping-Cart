@@ -4,8 +4,6 @@ import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.product.ProductCategory
 import org.junit.Test
 
-import org.junit.Assert.*
-
 class PurchaseTest {
 
     @Test
@@ -79,5 +77,19 @@ class PurchaseTest {
         purchase.addProducts(products)
 
         assert(purchase.totalPriceWithTax == 17263.05) {"Total sales tax not calculated correctly"}
+    }
+
+    @Test
+    fun idUniqueness() {
+        val previousIds = mutableListOf<String>()
+        for (i in 0 until 1000) {
+            val purchase = Purchase()
+
+            assert(previousIds.firstOrNull { id -> id == purchase.id } == null) {
+                "ID match found on try $i"
+            }
+
+            previousIds.add(purchase.id)
+        }
     }
 }
