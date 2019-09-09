@@ -22,12 +22,12 @@ class ShoppingCartProductAdapter(private val context: Context) : RecyclerView.Ad
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-        val productPair = products[position]
+        val product = products[position]
 
         holder.apply {
-            tvName.text = productPair.name
-            tvCost.text = DataConversionUtils.priceDisplayString(productPair.baseCost)
-//            tvCount.text = "1"
+            tvName.text = product.name
+            tvCost.text = DataConversionUtils.priceDisplayString(product.baseCost)
+            tvCount.text = context.getString(R.string.format_quantity, 1)
         }
     }
 

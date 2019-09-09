@@ -9,6 +9,8 @@
     <string name="category">Category</string>
     <string name="imported">Imported</string>
 
+    <string name="format_quantity">x %1$d</string>
+
     <string name="none">None</string>
     <string name="vehicle">Vehicle</string>
     <string name="alcoholic_beverage">Alcoholic Beverage</string>

@@ -5,7 +5,7 @@ import android.util.LruCache
 open class BaseCache<T: BaseDatum>(cacheSize: Int = 8 * 1024 * 1024) {
     private val cache = LruCache<String, T>(cacheSize)
 
-    fun put(purchase: T) {
+    open fun put(purchase: T) {
         synchronized(this) {
             if (cache.get(purchase.id) == null) {
                 cache.put(purchase.id, purchase)

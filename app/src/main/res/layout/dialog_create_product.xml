@@ -11,7 +11,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight="3"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -24,8 +24,9 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -34,24 +35,30 @@
                 android:hint="@string/cost"
                 android:id="@+id/tietCost" />
 
-
         </com.google.android.material.textfield.TextInputLayout>
 
-        <Spinner
-            android:id="@+id/categoriesSpinner"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category"
-            android:layout_marginStart="8dp" />
     </LinearLayout>
 
-
-
-    <Switch
-        android:id="@+id/switchImported"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/imported" />
+        android:orientation="horizontal">
+        <Spinner
+            android:id="@+id/categoriesSpinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:layout_weight="2"
+            android:layout_marginStart="8dp" />
+
+        <Switch
+            android:id="@+id/switchImported"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/imported" />
+    </LinearLayout>
+
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btSubmit"

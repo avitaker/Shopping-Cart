@@ -10,10 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import androidx.annotation.StyleRes
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.fanreact.shoppingcartpricecalculator.R
+import com.fanreact.shoppingcartpricecalculator.product.ProductCache
 import com.fanreact.shoppingcartpricecalculator.product.ProductCategory
 import com.fanreact.shoppingcartpricecalculator.product.displayString
 import com.fanreact.shoppingcartpricecalculator.product.parseFromDisplayString
@@ -108,7 +110,10 @@ class DialogCreateProduct : BottomSheetDialogFragment() {
         super.onStart()
         createProductViewModel.addedProductLiveData.observe(this, Observer {
             it?.let {
-                mainViewModel?.addProduct(it)
+                ProductCache.put(it)
+                activity?.let {
+                    Toast.makeText(it, "Product Created Successfully", Toast.LENGTH_LONG).show()
+                }
                 dismiss()
             }
         })
