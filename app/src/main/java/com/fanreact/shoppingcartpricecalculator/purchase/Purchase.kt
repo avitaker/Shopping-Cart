@@ -1,6 +1,5 @@
 package com.fanreact.shoppingcartpricecalculator.purchase
 
-import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.utilities.BaseDatum
 import java.util.*
 

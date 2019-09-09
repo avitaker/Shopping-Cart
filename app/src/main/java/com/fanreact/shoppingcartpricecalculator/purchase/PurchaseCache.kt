@@ -1,6 +1,5 @@
 package com.fanreact.shoppingcartpricecalculator.purchase
 
-import android.util.LruCache
 import com.fanreact.shoppingcartpricecalculator.product.ProductCache
 import com.fanreact.shoppingcartpricecalculator.utilities.BaseCache
 

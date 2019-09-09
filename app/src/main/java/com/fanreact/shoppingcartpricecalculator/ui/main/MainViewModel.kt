@@ -3,9 +3,7 @@ package com.fanreact.shoppingcartpricecalculator.ui.main
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.fanreact.shoppingcartpricecalculator.product.Product
 import com.fanreact.shoppingcartpricecalculator.purchase.ProductCounter
 import com.fanreact.shoppingcartpricecalculator.purchase.Purchase
 import com.fanreact.shoppingcartpricecalculator.purchase.PurchaseCache
